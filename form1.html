@@ -1,25 +1,108 @@
 <!DOCTYPE html>
-   <html>
-   <body>
-     <form>
-       <table style="border:none;">
-         <tr>
-           <td><label>用户名：</label></td>
-           <td><input type="刘壮"></td>
-         </tr>
-         <tr>
-           <td><label>密码：</label></td>
-           <td><input type="5201314"></td>
-         </tr>
-         <tr>
-           <td><label>性别：</label></td>
-           <td>
-             <input type="radio" name="gender"> 男
-             <input type="radio" name="gender"> 女
-           </td>
-         </tr>
-       </table>
-       <input type="submit" value="提交">
-     </form>
-   </body>
-   </html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <style>
+        .container {
+            width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], 
+        input[type="password"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .checkbox-group, .radio-group {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>用户注册</h2>
+        <form>
+            <!-- 用户名 -->
+            <div class="form-group">
+                <label>用户名称：</label>
+                <input type="text" name="username" placeholder="zhangsan" required>
+            </div>
+
+            <!-- 密码 -->
+            <div class="form-group">
+                <label>用户密码：</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <!-- 性别 -->
+            <div class="form-group">
+                <label>用户性别：</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="gender" value="male" required> 男
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="female"> 女
+                    </label>
+                </div>
+            </div>
+
+            <!-- 爱好 -->
+            <div class="form-group">
+                <label>爱好：</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="hobby" value="football"> 足球</label>
+                    <label><input type="checkbox" name="hobby" value="basketball"> 篮球</label>
+                    <label><input type="checkbox" name="hobby" value="lol"> LOL</label>
+                    <label><input type="checkbox" name="hobby" value="k-drama"> 韩剧</label>
+                    <label><input type="checkbox" name="hobby" value="honor"> 王者荣耀</label>
+                </div>
+            </div>
+
+            <!-- 邮箱 -->
+            <div class="form-group">
+                <label>邮箱：</label>
+                <input type="email" name="email" placeholder="请输入您的邮箱" required>
+            </div>
+
+            <!-- 头像上传 -->
+            <div class="form-group">
+                <label>用户头像：</label>
+                <input type="file" name="avatar">
+            </div>
+
+            <!-- 家庭住址 -->
+            <div class="form-group">
+                <label>您的家庭住址是：</label>
+                <select name="address">
+                    <option value="shaanxi">陕西</option>
+                    <!-- 可以添加更多省份 -->
+                </select>
+            </div>
+
+            <!-- 建议 -->
+            <div class="form-group">
+                <label>您的建议或者意见</label>
+                <textarea name="suggestion" rows="4"></textarea>
+            </div>
+
+            <button type="submit">提交注册</button>
+        </form>
+    </div>
+</body>
+</html>
