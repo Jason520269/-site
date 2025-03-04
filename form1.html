@@ -10,6 +10,7 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            background-color: #f9f9f9;
         }
         .form-group {
             margin-bottom: 15px;
@@ -27,16 +28,29 @@
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            box-sizing: border-box; /* 添加这个属性以确保 padding 不会影响宽度 */
         }
         .checkbox-group, .radio-group {
             margin: 5px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>用户注册</h2>
-        <form>
+        <form action="您的服务器端处理URL" method="POST">
             <!-- 用户名 -->
             <div class="form-group">
                 <label>用户名称：</label>
@@ -54,10 +68,13 @@
                 <label>用户性别：</label>
                 <div class="radio-group">
                     <label>
-                        <input type="radio" name="gender" value="male" required> 男
+                        <input type="radio" name="gender" value="male"> 男
                     </label>
                     <label>
                         <input type="radio" name="gender" value="female"> 女
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="other"> 其他
                     </label>
                 </div>
             </div>
@@ -83,7 +100,7 @@
             <!-- 头像上传 -->
             <div class="form-group">
                 <label>用户头像：</label>
-                <input type="file" name="avatar">
+                <input type="file" name="avatar" accept="image/*">
             </div>
 
             <!-- 家庭住址 -->
@@ -92,6 +109,9 @@
                 <select name="address">
                     <option value="shaanxi">陕西</option>
                     <!-- 可以添加更多省份 -->
+                    <option value="beijing">北京</option>
+                    <option value="shanghai">上海</option>
+                    <option value="guangdong">广东</option>
                 </select>
             </div>
 
