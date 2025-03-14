@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简小丽 - 动态简历</title>
+    <style>
+        /* 动画背景 */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-content: center;
+            background: radial-gradient(
+                ellipse at center,
+                #FF6B6B 0%,
+                #4ECDC4 100%
+            );
+            animation: gradient-pulse 8s ease infinite;
+            overflow: hidden;
+            font-family: '微软雅黑', sans-serif;
+        }
+
+        @keyframes gradient-pulse {
+            0%, 100% { background-size: 100% 100%; }
+            50% { background-size: 150% 150%; }
+        }
+
+        /* 简历容器 */
+        .resume {
+            background: rgba(255,255,255,0.97);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 80vw;
+            max-width: 1000px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+        }
+
+        /* 头像样式 */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 1rem auto;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+
+        /* 头部信息 */
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 1rem 0;
+            border-bottom: 2px solid #4ECDC4;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            padding-right: 2rem;
+            border-right: 2px solid #eee;
+        }
+
+        /* 主要内容 */
+        .main-content {
+            padding-left: 2rem;
+        }
+
+        /* 工作经历条目 */
+        .experience-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .resume {
+                grid-template-columns: 1fr;
+                width: 95vw;
+                padding: 1rem;
+            }
+            .sidebar {
+                border-right: none;
+                padding-right: 0;
+            }
+            .main-content {
+                padding-left: 0;
+            }
+            .experience-item {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 通用样式 */
+        h1 { color: #2C3E50; margin: 0.5rem 0; }
+        h2 { color: #34495E; border-left: 4px solid #4ECDC4; padding-left: 1rem; }
+        h3 { color: #16A085; margin: 0.8rem 0 0.3rem; }
+        ul { padding-left: 1.5rem; }
+        li { margin: 0.5rem 0; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <!-- 头部信息 -->
+        <div class="header">
+            < img src="./120000.jpg" 
+                 alt="简小丽照片"
+                 class="avatar">
+            <h1>简小丽</h1>
+            <p>📞 135-0000-0000 | 📍 湖南长沙岳麓区</p >
+        </div>
+
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <h2>核心能力</h2>
+            <ul>
+                <li>社区健康管理</li>
+                <li>医疗数据分析</li>
+                <li>团队统筹协调</li>
+                <li>应急事件处理</li>
+            </ul>
+
+            <h2>教育背景</h2>
+            <h3>长沙市卫生职业学院</h3>
+            <p>护理专业（中专）</p >
+            <p>2021-至今 湖南师范大学<br>健康管理本科（在职）</p >
+
+            <h2>资格证书</h2>
+            <ul>
+                <li>健康管理师三级</li>
+                <li>急救员资格证书</li>
+            </ul>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="main-content">
+            <h2>工作经历</h2>
+            <div class="experience-item">
+                <div>2019-至今</div>
+                <div>
+                    <h3>岳麓社区健康服务中心 | 组长</h3>
+                    <ul>
+                        <li>管理10人团队，年度服务超15,000人次</li>
+                        <li>优化检测流程，效率提升30%</li>
+                        <li>开发电子健康档案系统，准确率达99.2%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>项目成果</h2>
+            <div class="experience-item">
+                <div>2022</div>
+                <div>
+                    <h3>社区慢性病管理计划</h3>
+                    <ul>
+                        <li>覆盖5个社区，服务800+患者</li>
+                        <li>建立健康干预方案，复诊率降低25%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>专业技能</h2>
+            <ul>
+                <li>熟练使用SPSS进行健康数据分析</li>
+                <li>精通Office办公套件（Excel高级功能）</li>
+                <li>基础前端开发（HTML/CSS）</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
