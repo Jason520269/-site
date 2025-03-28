@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二次方程求解器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .equation-form {
+            display: flex;
+            margin: 20px 0;
+            align-items: center;
+        }
+        .input-group {
+            margin-right: 10px;
+        }
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 5px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #solution-area {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            min-height: 100px;
+        }
+        .example {
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>二次方程求解器</h1>
+    
+    <div class="equation-form">
+        <div class="input-group">
+            <input type="number" id="a" value="1" step="any">
+            <span>x² +</span>
+        </div>
+        <div class="input-group">
+            <input type="number" id="b" value="0" step="any">
+            <span>x +</span>
+        </div>
+        <div class="input-group">
+            <input type="number" id="c" value="0" step="any">
+            <span>= 0</span>
+        </div>
+        <button onclick="solveQuadratic()">解</button>
+    </div>
+    
+    <div id="solution-area">
+        解将显示在这里...
+    </div>
+    
+    <div class="example">
+        解示例：x₁=3+4i，x₂=3-4i 或 x = 5 或 无解
+    </div>
+    
+    <script>
+        function solveQuadratic() {
+            // 获取系数
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            
+            // 检查是否是一元一次方程
+            if (a === 0) {
+                if (b === 0) {
+                    if (c === 0) {
+                        document.getElementById('solution-area').innerHTML = "所有实数都是解";
+                    } else {
+                        document.getElementById('solution-area').innerHTML = "无解";
+                    }
+                } else {
+                    // 一元一次方程
+                    const x = -c / b;
+                    document.getElementById('solution-area').innerHTML = `x = ${x}`;
+                }
+                return;
+            }
+            
+            // 计算判别式
+            const discriminant = b * b - 4 * a * c;
+            
+            if (discriminant > 0) {
+                // 两个不同的实数解
+                const sqrtD = Math.sqrt(discriminant);
+                const x1 = (-b + sqrtD) / (2 * a);
+                const x2 = (-b - sqrtD) / (2 * a);
+                document.getElementById('solution-area').innerHTML = `x₁ = ${x1.toFixed(2)}, x₂ = ${x2.toFixed(2)}`;
+            } else if (discriminant === 0) {
+                // 一个实数解
+                const x = -b / (2 * a);
+                document.getElementById('solution-area').innerHTML = `x = ${x.toFixed(2)}`;
+            } else {
+                // 复数解
+                const realPart = -b / (2 * a);
+                const imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
+                document.getElementById('solution-area').innerHTML = 
+                    `x₁ = ${realPart.toFixed(2)} + ${imaginaryPart.toFixed(2)}i, ` +
+                    `x₂ = ${realPart.toFixed(2)} - ${imaginaryPart.toFixed(2)}i`;
+            }
+        }
+    </script>
+</body>
+</html>
