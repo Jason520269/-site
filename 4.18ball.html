@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(700px); }
+            25% { transform: translateY(500px); }
+            50% { transform: translateY(300px); }
+            75% { transform: translateY(500px); }
+            100% { transform: translateY(700px); }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function Balloon(id, color1, diameter, speed) {
+            this.color = color1;
+            this.diameter = diameter;
+            this.speed = speed;
+            this.id = id;
+            
+            this.make = function() {
+                let dv = document.createElement('div');
+                dv.id = 'd' + id;
+                dv.style.cssText = 'width:' + this.diameter + 'px;height:' + this.diameter + 'px;border-radius:' + (this.diameter/2) + 'px;background-color:' + this.color + ';position:absolute;transform:translateY(700px);left:' + (Math.random() * (window.innerWidth - this.diameter)) + 'px;';
+                document.body.appendChild(dv);
+            }
+
+            this.float = function() {
+                let dv = document.getElementById('d' + this.id);
+                dv.style.animationName = "float";
+                dv.style.animationDuration = (10/this.speed) + 's';
+                dv.style.animationIterationCount = "infinite";
+                dv.style.animationTimingFunction = "ease-in-out";
+            }
+        }
+
+        // 生成30个颜色鲜亮的气球
+        const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'cyan', 'magenta', 'lime'];
+        for (let i = 0; i < 30; i++) {
+            let color = colors[Math.floor(Math.random() * colors.length)];
+            let diameter = 50 + Math.random() * 100; // 直径在50-150px之间
+            let speed = 0.5 + Math.random(); // 速度在0.5-1.5之间
+            
+            let b = new Balloon(i, color, diameter, speed);
+            b.make();
+            setTimeout(() => {
+                b.float();
+            }, i * 200); // 每个气球间隔200ms开始漂浮
+        }
+    </script>
+</body>
+</html>
