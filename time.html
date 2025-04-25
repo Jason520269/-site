@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Right Time Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .result {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Right Time Checker</h1>
+        <p>This function checks if the current time is within the given time slots.</p >
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function rightTime(d, timeSlots) {
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const day = days[d.getDay()];
+            const hours = d.getHours().toString().padStart(2, '0');
+            const minutes = d.getMinutes().toString().padStart(2, '0');
+            const currentTime = `${day} ${hours}:${minutes}`;
+
+            for (let slot of timeSlots) {
+                const [slotDay, timeRange] = slot.split(' ');
+                const [startTime, endTime] = timeRange.split('-');
+                const [startHour, startMinute] = startTime.split(':').map(Number);
+                const [endHour, endMinute] = endTime.split(':').map(Number);
+                const currentHour = d.getHours();
+                const currentMinute = d.getMinutes();
+
+                const startMinutes = startHour * 60 + startMinute;
+                const endMinutes = endHour * 60 + endMinute;
+                const currentMinutes = currentHour * 60 + currentMinute;
+
+                if (day === slotDay && currentMinutes >= startMinutes && currentMinutes < endMinutes) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        const timeSlots = ['MTh 10:00-11:15', 'F 14:00-15:45'];
+        const date = new Date();
+        const result = rightTime(date, timeSlots);
+
+        document.getElementById('result').innerHTML = `
+            Current Time: ${date}<br>
+            Time Slots: ${timeSlots}<br>
+            Is current time within any time slot? ${result}
+        `;
+    </script>
+</body>
+</html>
