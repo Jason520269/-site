@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Balloons</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #87CEEB, #1E90FF);
+            height: 100vh;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: float 5s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="balloonContainer"></div>
+
+    <script>
+        // 定义允许的颜色
+        const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+        
+        // 获取容器元素
+        const balloonContainer = document.getElementById('balloonContainer');
+        
+        // 创建气球的函数
+        function createBalloon() {
+            // 随机颜色
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // 创建气球元素
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.backgroundColor = randomColor;
+            
+            // 随机位置
+            const randomLeft = Math.random() * (window.innerWidth - 50);
+            balloon.style.left = `${randomLeft}px`;
+            balloon.style.bottom = '0';
+            
+            // 随机大小（变大效果）
+            const randomSize = Math.random() * 20 + 30; // 30px 到 50px 之间
+            balloon.style.width = `${randomSize}px`;
+            balloon.style.height = `${randomSize + 10}px`;
+            
+            // 添加到容器
+            balloonContainer.appendChild(balloon);
+            
+            // 气球升到顶部后消失
+            setTimeout(() => {
+                balloonContainer.removeChild(balloon);
+            }, 5000);
+        }
+        
+        // 每隔1秒创建一个气球
+        setInterval(createBalloon, 1000);
+    </script>
+</body>
+</html>
