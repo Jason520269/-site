@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ballons</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: skyblue;
+        }
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background-color: red;
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background-color: black;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Create balloons
+        function createBalloons() {
+            const balloonColors = ['red', 'blue', 'green', 'yellow', 'purple'];
+            const balloonContainer = document.body;
+
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+
+                // Random color
+                const colorIndex = Math.floor(Math.random() * balloonColors.length);
+                balloon.style.backgroundColor = balloonColors[colorIndex];
+
+                // Random position
+                const leftPos = Math.floor(Math.random() * window.innerWidth);
+                balloon.style.left = leftPos + 'px';
+
+                // Random animation delay
+                const delay = Math.random() * 5;
+                balloon.style.animationDelay = delay + 's';
+
+                balloonContainer.appendChild(balloon);
+            }
+        }
+
+        // Initialize
+        window.onload = function() {
+            createBalloons();
+        };
+    </script>
+</body>
+</html>
