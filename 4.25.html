@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Names by Last Name</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table id="namesTable">
+        <thead>
+            <tr>
+                <th onclick="sortByLastName()">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>John Smith</td></tr>
+            <tr><td>Mary Johnson</td></tr>
+            <tr><td>David Williams</td></tr>
+            <tr><td>Sarah Brown</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function sortByLastName() {
+            const table = document.getElementById('namesTable');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            
+            rows.sort((a, b) => {
+                const aText = a.cells[0].textContent.trim();
+                const bText = b.cells[0].textContent.trim();
+                const aLast = aText.split(' ')[1];
+                const bLast = bText.split(' ')[1];
+                return aLast.localeCompare(bLast);
+            });
+            
+            // 清空表格并重新添加排序后的行
+            tbody.innerHTML = '';
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+</body>
+</html>
